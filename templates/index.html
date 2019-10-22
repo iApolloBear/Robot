@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Encrypter</title>
+<link rel="stylesheet" type="text/css" href="../static/main.css">
+{% endblock %}
+{% block body %}
+<div id="particles-js"></div>
+<div class="content" style="text-align: center">
+    <h1>Words</h1>
+    <table align="center" border="3">
+        {% if words|length < 1 %}
+        <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+        {% else %}
+        <tr>
+            <th>Word</th>
+            <th>MD5</th>
+            <th>SHA256</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for word in words %}
+        <tr>
+            <th>{{ word.content }}</th>
+            <th>{{ word.md5 }}</th>
+            <th>{{ word.sha }}</th>
+            <th>{{ word.date_created.date() }}</th>
+            <th>
+                <a href="/delete/{{word.id}}">Delete</a>
+                <a href="/update/{{word.id}}">update</a>
+            </th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <br>
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="Encrypt">
+    </form>
+</div>
+{% endblock %}
+<script src="../static/js/particles.js"></script>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>U P D A T E</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Update Word</h1>
+
+    <div class="form">
+        <form action="/update/{{word.id}}" method="POST">
+            <input type="text" name="content" id="content" value="{{word.content}}">
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
+{% endblock %}
